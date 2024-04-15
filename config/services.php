@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -14,6 +13,13 @@ return [
     |
     */
 
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
@@ -24,11 +30,25 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'slack' => [
-        'notifications' => [
-            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
-            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
-        ],
+    'multiavatar' => [
+        'url' => 'https://api.multiavatar.com/',
+        'key' => env('MULTIAVATAR_API_KEY'),
     ],
 
+    'csc' => [
+        'url' => env('CSC_API_URL'),
+        'key' => env('CSC_API_KEY'),
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => '/social/github/callback',
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => '/social/google/callback',
+    ],
 ];

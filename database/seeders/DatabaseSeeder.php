@@ -2,22 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        foreach (Storage::directories() as $directory) {
+            Storage::deleteDirectory($directory);
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Cache::flush();
+
+        $this->call([
+            SettingSeeder::class,
+            LocationSeeder::class,
+            UserSeeder::class,
+            BrandSeeder::class,
+            CategorySeeder::class,
+            GoodSeeder::class,
+            PromoCodeSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }
